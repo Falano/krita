@@ -149,20 +149,22 @@ void Imagesplit::slotImagesplit()
 
             if (directory.isEmpty())
                 return;
+
+            QString mimeTypeSelected = listMimeFilter.at(dlgImagesplit->cmbIndex);
+            QString homepath = directory.toLocalFile();
+            QString suffix = KisMimeDatabase::suffixesForMimeType(mimeTypeSelected).first();
+            qDebug() << "suffix" << suffix;
+            if (suffix.startsWith("*.")) {
+                suffix = suffix.remove(0, 1);
+            }
+            qDebug() << "\tsuffix" << suffix;
+            if (!suffix.startsWith(".")) {
+                suffix = suffix.prepend('.');
+            }
+            qDebug() << "\tsuffix" << suffix;
+
             for (int i = 0, k = 1; i < (numVerticalLines + 1); i++) {
                 for (int j = 0; j < (numHorizontalLines + 1); j++, k++) {
-                    QString mimeTypeSelected = listMimeFilter.at(dlgImagesplit->cmbIndex);
-                    QString homepath = directory.toLocalFile();
-                    QString suffix = KisMimeDatabase::suffixesForMimeType(mimeTypeSelected).first();
-                    qDebug() << "suffix" << suffix;
-                    if (suffix.startsWith("*.")) {
-                        suffix = suffix.remove(0, 1);
-                    }
-                    qDebug() << "\tsuffix" << suffix;
-                    if (!suffix.startsWith(".")) {
-                        suffix = suffix.prepend('.');
-                    }
-                    qDebug() << "\tsuffix" << suffix;
                     QString fileName = dlgImagesplit->suffix() + '_' + QString::number(k) + suffix;
                     QString url = homepath  + '/' + fileName;
                     if (!saveAsImage(QRect((i * img_width), (j * img_height), img_width, img_height), listMimeFilter.at(dlgImagesplit->cmbIndex), url)) {
