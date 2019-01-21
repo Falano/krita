@@ -47,6 +47,8 @@
       </layout>
      </item>
      <item row="1" column="0">
+      <layout class="QGridLayout" name="grdlayDirection">
+     <item row="1" column="0">
       <widget class="QCheckBox" name="chkAutoSave">
        <property name="font">
         <font>
@@ -58,6 +60,45 @@
        </property>
       </widget>
      </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="lblDirection">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+          <property name="text">
+           <string>Sort Direction:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QRadioButton" name="chkHorizontal">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+          <property name="text">
+           <string>Horizontal</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QRadioButton" name="chkVertical">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+          <property name="text">
+           <string>Vertical</string>
+          </property>
+         </widget>
+        </item>
+      </layout>
+     </item>
+
      <item row="2" column="0">
       <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">

@@ -84,6 +84,14 @@ bool DlgImagesplit::autoSave()
         return false;
 }
 
+bool DlgImagesplit::sortHorizontal()
+{
+    if (m_page->chkHorizontal->isChecked())
+        return true;
+    else
+        return false;
+}
+
 int DlgImagesplit::horizontalLines()
 {
     return m_page->intHorizontalSplitLines->value();

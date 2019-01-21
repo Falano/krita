@@ -172,11 +172,10 @@ void Imagesplit::slotImagesplit()
 
         int row;
         int column;
-        bool isHorizontal = true;
         int outerLoop;
         int innerLoop;
 
-        if (isHorizontal) {
+        if (dlgImagesplit->sortHorizontal()) {
             outerLoop = numHorizontalLines + 1;
             innerLoop = numVerticalLines + 1;
         }
@@ -188,7 +187,7 @@ void Imagesplit::slotImagesplit()
 
         for (int i = 0, k = 1; i < outerLoop; i++) {
             for (int j = 0; j < innerLoop; j++, k++) {
-                if (isHorizontal) {
+                if (dlgImagesplit->sortHorizontal()) {
                     row = i;
                     column = j;
                 }
