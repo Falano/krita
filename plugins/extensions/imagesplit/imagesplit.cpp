@@ -138,8 +138,8 @@ void Imagesplit::slotImagesplit()
 
         bool stop = false;
 
-	    QString mimeType;
-	    QString filepath;
+        QString mimeType;
+        QString filepath;
         QString homepath;
         QString suffix;
 
@@ -170,8 +170,33 @@ void Imagesplit::slotImagesplit()
             qDebug() << "\tsuffix" << suffix;
 	    }
 
-        for (int i = 0, k = 1; i < (numVerticalLines + 1); i++) {
-            for (int j = 0; j < (numHorizontalLines + 1); j++, k++) {
+        int row;
+        int column;
+        bool isHorizontal = true;
+        int outerLoop;
+        int innerLoop;
+
+        if (isHorizontal) {
+            outerLoop = numHorizontalLines + 1;
+            innerLoop = numVerticalLines + 1;
+        }
+        else {
+            outerLoop = numVerticalLines + 1;
+            innerLoop = numHorizontalLines + 1;
+        }
+
+
+        for (int i = 0, k = 1; i < outerLoop; i++) {
+            for (int j = 0; j < innerLoop; j++, k++) {
+                if (isHorizontal) {
+                    row = i;
+                    column = j;
+                }
+                else {
+                    row = j;
+                    column = i;
+                }
+
                 if (dlgImagesplit->autoSave()) {
                     QString fileName = dlgImagesplit->suffix() + '_' + QString::number(k) + suffix;
                     filepath = homepath  + '/' + fileName;
@@ -192,7 +217,7 @@ void Imagesplit::slotImagesplit()
                         return;
 
                 }
-                if (!saveAsImage(QRect((i * img_width), (j * img_height), img_width, img_height), mimeType, filepath)) {
+                if (!saveAsImage(QRect((column * img_width), (row * img_height), img_width, img_height), mimeType, filepath)) {
                     stop = true;
                     break;
                 }
