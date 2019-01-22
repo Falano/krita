@@ -170,8 +170,6 @@ void Imagesplit::slotImagesplit()
             qDebug() << "\tsuffix" << suffix;
 	    }
 
-        int row;
-        int column;
         int outerLoop;
         int innerLoop;
 
@@ -187,6 +185,8 @@ void Imagesplit::slotImagesplit()
 
         for (int i = 0, k = 1; i < outerLoop; i++) {
             for (int j = 0; j < innerLoop; j++, k++) {
+                int row;
+                int column;
                 if (dlgImagesplit->sortHorizontal()) {
                     row = i;
                     column = j;
